@@ -512,6 +512,19 @@ span{
     gap: 2.5rem;
 }
 
+.projects-container a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.projects-container a:hover .projects-box {
+    background: white;
+    color: black;
+    border: 5px solid var(--main-color);
+    transform: scale(1.03);
+}
+
 .projects-box{
     background-color: var(--main-color);
     height: 300px;

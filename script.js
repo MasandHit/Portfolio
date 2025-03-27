@@ -1,10 +1,10 @@
-// Existing code
+// Menu toggle functionality
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 let sections = document.querySelectorAll('section'); // Fixed to querySelectorAll
 let navLinks = document.querySelectorAll('header nav a'); // Fixed to querySelectorAll
 
-// Fixed scroll functionality
+// Smooth scrolling and active section highlighting
 window.onscroll = () => {
     sections.forEach(sec => {
         let top = window.scrollY;
@@ -21,54 +21,67 @@ window.onscroll = () => {
     });
 };
 
-// Menu toggle
+// Mobile menu toggle
 menuIcon.onclick = () => {
     menuIcon.classList.toggle('bx-x');
     navbar.classList.toggle('active');
 };
 
-// Contact form handling
+// Contact form handling with FormSubmit
 document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('#contact form');
+    const contactForm = document.getElementById('contactForm');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Get form data
-            const formData = {
-                name: contactForm.querySelector('input[type="text"]').value,
-                email: contactForm.querySelector('input[type="email"]').value,
-                phone: contactForm.querySelector('input[type="number"]').value,
-                subject: contactForm.querySelector('input[placeholder="Subject"]').value,
-                message: contactForm.querySelector('textarea').value
-            };
-
-            // Send email using FormSubmit
-            fetch('https://formsubmit.co/ajax/hitendra.masand@smail.astate.edu', {
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            // Collect form data
+            const formData = new FormData(contactForm);
+            
+            // Send to FormSubmit
+            fetch(contactForm.action, {
                 method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
+                body: formData,
+                headers: {
                     'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    phone: formData.phone,
-                    subject: formData.subject,
-                    message: formData.message,
-                    _subject: "New message from portfolio contact form"
-                })
+                }
             })
-            .then(response => response.json())
-            .then(data => {
-                alert('Message sent successfully!');
-                contactForm.reset();
+            .then(response => {
+                if (response.ok) {
+                    alert('Message sent successfully!');
+                    contactForm.reset();
+                } else {
+                    throw new Error('Failed to send message');
+                }
             })
             .catch(error => {
-                alert('Error sending message');
+                alert('Error sending message. Please try again or email me directly.');
                 console.error('Error:', error);
+            })
+            .finally(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
             });
         });
     }
 });
+
+// Text animation (if you have this functionality)
+const textAnimation = document.querySelector('.text-animation span');
+if (textAnimation) {
+    const professions = ["Software Developer", "Data Analyst", "UI/UX Designer", "Web Developer"];
+    let currentIndex = 0;
+    
+    function updateProfession() {
+        textAnimation.textContent = professions[currentIndex];
+        currentIndex = (currentIndex + 1) % professions.length;
+    }
+    
+    setInterval(updateProfession, 2000); // Change every 2 seconds
+}

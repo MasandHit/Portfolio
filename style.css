@@ -864,3 +864,33 @@ span{
 }
 
 */
+
+.footer .copyright{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    margin-top: 2rem;
+
+}
+
+.footer .copyright a{
+    margin-top: 50px;
+    font-weight: bold; /* Add this line */
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+.footer .copyright a:hover{
+    margin-top: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+}
+
+.footer .copyright a:hover,
+.footer .copyright a:active{
+    color: var(--main-color);
+    border-bottom: 3px solid var(--main-color);
+}

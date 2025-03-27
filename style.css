@@ -127,7 +127,7 @@ span{
 .home-img img {
     position: relative;
     top: 3rem;
-    width: 30vw;
+    width: auto;
     height: auto; /* Let height adjust automatically */
     max-width: 350px; /* Optional: set a max size */
     max-height: 350px; /* Optional: set a max size */

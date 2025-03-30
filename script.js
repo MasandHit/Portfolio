@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('header nav a');
     const header = document.querySelector('.header');
     const contactForm = document.getElementById('contactForm');
-    const textAnimation = document.querySelector('.text-animation span');
 
     // Menu toggle with null check
     if (menuIcon) {
@@ -80,34 +79,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Text animation
     
-    if (textAnimation) {
-        const professions = [
-            "Software Developer", 
-            "Data Analyst", 
-            "UI/UX Designer", 
-            "Web Developer"
-        ];
-        let currentIndex = 0;
-        
-        function updateProfession() {
-            // Reset animation to prevent glitches
-            textAnimation.style.animation = 'none';
-            void textAnimation.offsetWidth; // Trigger reflow
-            
-            // Update the text
-            textAnimation.textContent = professions[currentIndex];
-            
-            // Restart animation
-            textAnimation.style.animation = null;
-            
-            // Move to next profession
-            currentIndex = (currentIndex + 1) % professions.length;
-        }
-
-        // Initialize with first profession
-        textAnimation.textContent = professions[0];
-        
-        // Update every 3 seconds (adjust timing as needed)
-        setInterval(updateProfession, 3000);
-    }
 });

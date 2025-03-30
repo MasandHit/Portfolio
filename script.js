@@ -78,15 +78,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Text animation
-    if (textAnimation) {
-        const professions = ["Software Developer", "Data Analyst", "UI/UX Designer", "Web Developer"];
-        let currentIndex = 0;
-        
-        function updateProfession() {
-            textAnimation.textContent = professions[currentIndex];
-            currentIndex = (currentIndex + 1) % professions.length;
-        }
-        setInterval(updateProfession, 2000);
-    }
+    
 });

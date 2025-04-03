@@ -512,6 +512,35 @@ span{
     gap: 2.5rem;
 }
 
+.projects-container {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+/* Special layout when ODD number of children */
+.projects-container:has(> :nth-child(odd):last-child) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-auto-flow: dense;
+}
+
+/* Center the middle project (3rd in 5, 4th in 7, etc) */
+.projects-container:has(> :nth-child(odd):last-child) > :nth-child(3) {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+    .projects-container {
+        grid-template-columns: 1fr !important;
+    }
+    .projects-box {
+        width: 100% !important;
+        grid-column: auto !important;
+    }
+}
+
 .projects-container a {
     text-decoration: none;
     color: inherit;
